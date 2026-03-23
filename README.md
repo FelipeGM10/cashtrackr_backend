@@ -88,8 +88,8 @@ El servidor expone la API en `http://localhost:4000` por defecto.
 | `npm run test` | Ejecuta la suite de pruebas con Jest. |
 | `npm run test:coverage` | Ejecuta pruebas y genera cobertura. |
 | `npm run pretest` | Limpia y recrea la base de datos antes de pruebas. |
-| `npm run build` | Ejecuta `tsc`. |
-| `npm run start` | Intenta iniciar `dist/index.js`. |
+| `npm run build` | Compila el proyecto a `dist/` usando `tsconfig.build.json`. |
+| `npm run start` | Inicia la versión compilada desde `dist/index.js`. |
 
 ## Consideraciones operativas
 
@@ -97,7 +97,7 @@ El servidor expone la API en `http://localhost:4000` por defecto.
 - El proyecto usa `db.sync()` para sincronizar modelos con la base de datos; no hay sistema de migraciones en este repositorio.
 - El script `pretest` ejecuta `db.sync({ force: true })`, por lo que elimina y recrea las tablas. No debe apuntar a una base compartida o de producción.
 - Los flujos de registro y recuperación dependen de una configuración SMTP válida; si el envío de correo falla, la operación también falla.
-- La configuración actual de TypeScript incluye `noEmit: true` en [`tsconfig.json`](/Users/felipegonzalezylopez/Desktop/FullStack_Developer/cashtrackr/backend/tsconfig.json), así que `npm run build` no genera `dist/` mientras esa opción siga activa. En consecuencia, `npm run start` requiere ajustar antes la compilación.
+- El proyecto separa la configuración de TypeScript para build y pruebas en [`tsconfig.build.json`](/Users/felipegonzalezylopez/Desktop/FullStack_Developer/cashtrackr/backend/tsconfig.build.json) y [`tsconfig.test.json`](/Users/felipegonzalezylopez/Desktop/FullStack_Developer/cashtrackr/backend/tsconfig.test.json).
 
 ## Autenticación
 
