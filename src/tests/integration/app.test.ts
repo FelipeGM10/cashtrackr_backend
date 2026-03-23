@@ -185,7 +185,7 @@ describe('Authentication - Login', () => {
         expect(loginMock).not.toHaveBeenCalled()
     })
 
-    it('should return a 400 error if the user is not found', async () => {
+    it('should return a 404 error if the user is not found', async () => {
         const response = await request(server)
                             .post('/api/auth/login')
                             .send({
@@ -225,7 +225,7 @@ describe('Authentication - Login', () => {
         expect(response.status).not.toBe(404)
     })
 
-    it('should return a 403 error if the user account is not confirmed', async () => {
+    it('should return a 403 error if the user account is not confirmed after an account has been created', async () => {
 
         const userData = {
             name: "Test",
